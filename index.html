@@ -939,6 +939,10 @@
     });
 
     function handleGesture() {
+      // 모바일/태블릿 화면 크기(1024px 미만)에서는 터치 스와이프로 슬라이드가 넘어가는 것을 방지 (스크롤 지원을 위해)
+      if (window.innerWidth < 1024) {
+        return;
+      }
       if (touchendX < touchstartX - 50) {
         // Swiped left
         if (currentSlide < totalSlides - 1) {
@@ -962,6 +966,9 @@
     document.addEventListener('wheel', (e) => {
       // 사이드바가 열려있다면 슬라이드 전환을 무시
       if (sidebar && !sidebar.classList.contains('-translate-x-full')) return;
+
+      // 모바일/태블릿 화면 크기(1024px 미만)에서는 휠/스크롤로 슬라이드가 넘어가는 것을 방지 (내부 스크롤 지원을 위해)
+      if (window.innerWidth < 1024) return;
 
       const currentTime = new Date().getTime();
       if (currentTime - lastWheelTime < wheelCooldown) return;
