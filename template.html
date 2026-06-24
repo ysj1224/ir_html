@@ -310,6 +310,29 @@
       }
     }
 
+    // Check if element or its parents can scroll in the direction of deltaY
+    function canScroll(element, deltaY) {
+      let current = element;
+      const mainContainer = document.querySelector('main');
+      
+      while (current && current !== mainContainer && current !== document.body && current !== document.documentElement) {
+        const style = window.getComputedStyle(current);
+        const overflowY = style.overflowY;
+        const isScrollable = overflowY === 'auto' || overflowY === 'scroll';
+        
+        // Element must have actual vertical overflow to be considered scrollable
+        if (isScrollable && current.scrollHeight > current.clientHeight + 3) {
+          const canScrollDown = deltaY > 0 && (current.scrollTop + current.clientHeight < current.scrollHeight - 3);
+          const canScrollUp = deltaY < 0 && current.scrollTop > 3;
+          if (canScrollDown || canScrollUp) {
+            return true;
+          }
+        }
+        current = current.parentElement;
+      }
+      return false;
+    }
+
     // Wheel Scroll support for sliding
     let lastWheelTime = 0;
     const wheelCooldown = 800; // ms 쿨타임
@@ -317,6 +340,9 @@
     document.addEventListener('wheel', (e) => {
       // 사이드바가 열려있다면 슬라이드 전환을 무시
       if (sidebar && !sidebar.classList.contains('-translate-x-full')) return;
+
+      // 마우스가 스크롤 가능한 요소 위에 있고, 그 방향으로 스크롤 여유가 있다면 슬라이드 전환 무시
+      if (canScroll(e.target, e.deltaY)) return;
 
       // 모바일/태블릿 화면 크기(1024px 미만)에서는 휠/스크롤로 슬라이드가 넘어가는 것을 방지 (내부 스크롤 지원을 위해)
       if (window.innerWidth < 1024) return;
