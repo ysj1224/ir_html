@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IR Pitch Deck - 전처리 중앙 키친을 통한 급식 산업의 체질 개선</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+      overflow-x: hidden;
+    }
+
+    .slide-transition {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* 스크롤바 숨기기 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #F8FAFC;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1A56DB;
+      border-radius: 3px;
+    }
+
+    /* 모바일 슬라이드 내부 스크롤바 숨김 */
+    .slide-item::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide-item {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(100%);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-in-out;
+      z-index: 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .slide-item {
+        padding-left: 3rem;
+        padding-right: 3rem;
+      }
+    }
+
+    .slide-item.prev-slide {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide-item.active-slide {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 10;
+    }
+
+    .slide-item.next-slide {
+      transform: translateY(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body class="h-screen flex flex-col justify-between">
+
+  <!-- SIDEBAR (TABLE OF CONTENTS) -->
+  <aside id="sidebar"
+    class="fixed top-0 left-0 h-full w-[85vw] sm:w-80 bg-white/95 backdrop-blur-md border-r border-slate-200 z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
+    <div class="p-6 border-b border-slate-200 flex justify-between items-center">
+      <span class="text-[#1A56DB] font-bold text-sm tracking-wider uppercase">Table of Contents</span>
+      <button id="close-sidebar-btn" class="text-slate-500 hover:text-slate-800 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <nav class="flex-grow overflow-y-auto p-4 space-y-2" id="sidebar-menu">
+      <!-- Generated via JS -->
+    </nav>
+    <div class="p-6 border-t border-slate-200 text-xs text-slate-400 font-mono text-center">
+      © Dooson Company
+    </div>
+  </aside>
+
+  <!-- TOP PROGRESS BAR & HEADER -->
+  <header class="w-full px-6 py-4 flex justify-between items-center bg-white border-b border-slate-200 z-50">
+    <div class="flex items-center space-x-3">
+      <button id="toggle-sidebar-btn"
+        class="p-2 rounded-lg border border-slate-200 hover:border-[#1A56DB] text-slate-500 hover:text-[#1A56DB] transition-all mr-1 flex items-center justify-center">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <span class="text-[#1A56DB] font-extrabold tracking-wider text-xl">두손컴퍼니</span>
+      <span class="text-xs px-2.5 py-1 rounded bg-slate-100 text-slate-600 font-semibold uppercase">Series A Prep</span>
+    </div>
+    <!-- Slide Indicator -->
+    <div class="flex items-center space-x-1" id="dots-container">
+      <!-- Generated via JS -->
+    </div>
+    <!-- Utility Buttons -->
+    <div class="flex items-center space-x-3">
+
+      <span class="text-xs text-slate-500 font-mono hidden md:inline">◀▶ 키 이동 가능</span>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES CONTAINER -->
+  <main class="flex-grow flex items-center justify-center px-4 md:px-12 py-6 relative overflow-hidden">
+
+        <!-- SLIDES_PLACEHOLDER -->
+
+  </main>
+
+  <!-- FOOTER & NAVIGATION CONTROLS -->
+  <footer
+    class="w-full bg-white border-t border-slate-200 px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 z-50">
+    <div class="flex items-center space-x-2 text-slate-500 text-xs">
+      <span>Dooson company</span>
+      <span>•</span>
+      <span id="slide-title-label" class="text-slate-600 font-semibold">COVER PAGE</span>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="flex items-center space-x-4">
+      <button id="prev-btn"
+        class="p-2 rounded-lg border border-slate-200 hover:border-[#1A56DB] text-slate-500 hover:text-[#1A56DB] transition-all disabled:opacity-30 disabled:pointer-events-none">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <span class="text-xs font-mono text-[#1A56DB] font-bold" id="counter-label">1 / 9</span>
+      <button id="next-btn"
+        class="p-2 rounded-lg border border-slate-200 hover:border-[#1A56DB] text-slate-500 hover:text-[#1A56DB] transition-all disabled:opacity-30 disabled:pointer-events-none">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+
+
+  <!-- INTERACTIVE PRESENTATION LOGIC -->
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const totalSlides = slides.length;
+
+    const slideTitles = [
+      "전처리 센트럴 키친",
+      "위탁급식 산업의 고질적 4대 병목",
+      "전처리 중앙 키친(CK) 도입 솔루션",
+      "연평균 매출 성장 곡선 및 사업 비중",
+      "지점 단위 경제성 비교표",
+      "Rule of 56 적용: 고성장 고수익 증명",
+      "5개년 재무 예측 및 기업가치",
+      "투자 목표 및 재원 활용 계획",
+      "Dooson company 파트너십 제안"
+    ];
+
+
+
+    // Initialize dots
+    const dotsContainer = document.getElementById('dots-container');
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('button');
+      dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-[#1A56DB] w-6' : 'bg-slate-300'}`;
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateSlide() {
+      // Show/Hide slides with vertical transition
+      slides.forEach((slide, idx) => {
+        slide.classList.remove('hidden', 'flex', 'prev-slide', 'active-slide', 'next-slide');
+        if (idx === currentSlide) {
+          slide.classList.add('flex', 'active-slide');
+        } else if (idx < currentSlide) {
+          slide.classList.add('flex', 'prev-slide');
+        } else {
+          slide.classList.add('flex', 'next-slide');
+        }
+      });
+
+      // Update Dots
+      const dots = dotsContainer.querySelectorAll('button');
+      dots.forEach((dot, idx) => {
+        if (idx === currentSlide) {
+          dot.className = 'w-2 h-2 rounded-full transition-all duration-300 bg-[#1A56DB] w-6';
+        } else {
+          dot.className = 'w-2 h-2 rounded-full transition-all duration-300 bg-slate-300';
+        }
+      });
+
+      // Update Labels
+      document.getElementById('slide-title-label').innerText = slideTitles[currentSlide].toUpperCase();
+      document.getElementById('counter-label').innerText = `${currentSlide + 1} / ${totalSlides}`;
+
+      // Update Nav Buttons State
+      document.getElementById('prev-btn').disabled = currentSlide === 0;
+      document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+
+      // Update Sidebar Active state
+      if (typeof updateSidebarActive === 'function') {
+        updateSidebarActive();
+      }
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+        currentSlide = index;
+        updateSlide();
+      }
+    }
+
+    // Prev / Next bindings
+    document.getElementById('prev-btn').onclick = () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      }
+    };
+
+    document.getElementById('next-btn').onclick = () => {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlide();
+      }
+    };
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateSlide();
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlide();
+        }
+      }
+    });
+
+    // Touch Support for swipe left/right
+    let touchstartX = 0;
+    let touchendX = 0;
+
+    document.addEventListener('touchstart', e => {
+      touchstartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', e => {
+      touchendX = e.changedTouches[0].screenX;
+      handleGesture();
+    });
+
+    function handleGesture() {
+      // 모바일/태블릿 화면 크기(1024px 미만)에서는 터치 스와이프로 슬라이드가 넘어가는 것을 방지 (스크롤 지원을 위해)
+      if (window.innerWidth < 1024) {
+        return;
+      }
+      if (touchendX < touchstartX - 50) {
+        // Swiped left
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateSlide();
+        }
+      }
+      if (touchendX > touchstartX + 50) {
+        // Swiped right
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlide();
+        }
+      }
+    }
+
+    // Wheel Scroll support for sliding
+    let lastWheelTime = 0;
+    const wheelCooldown = 800; // ms 쿨타임
+
+    document.addEventListener('wheel', (e) => {
+      // 사이드바가 열려있다면 슬라이드 전환을 무시
+      if (sidebar && !sidebar.classList.contains('-translate-x-full')) return;
+
+      // 모바일/태블릿 화면 크기(1024px 미만)에서는 휠/스크롤로 슬라이드가 넘어가는 것을 방지 (내부 스크롤 지원을 위해)
+      if (window.innerWidth < 1024) return;
+
+      const currentTime = new Date().getTime();
+      if (currentTime - lastWheelTime < wheelCooldown) return;
+
+      // deltaY 값이 일정 강도 이상일 때 동작
+      if (Math.abs(e.deltaY) > 20) {
+        if (e.deltaY > 0) {
+          // Scroll down -> Next Slide
+          if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlide();
+            lastWheelTime = currentTime;
+          }
+        } else {
+          // Scroll up -> Prev Slide
+          if (currentSlide > 0) {
+            currentSlide--;
+            updateSlide();
+            lastWheelTime = currentTime;
+          }
+        }
+      }
+    }, { passive: true });
+
+    // Sidebar Controls and Menu Generation
+    const sidebar = document.getElementById('sidebar');
+    const sidebarMenu = document.getElementById('sidebar-menu');
+    const toggleSidebarBtn = document.getElementById('toggle-sidebar-btn');
+    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+
+    // Generate sidebar menu items
+    slideTitles.forEach((title, idx) => {
+      const item = document.createElement('button');
+      item.className = `w-full text-left px-4 py-3 rounded-xl border border-transparent transition-all flex items-center space-x-3 group hover:bg-slate-50 hover:border-slate-200`;
+      item.innerHTML = `
+        <span class="text-xs font-mono text-slate-400 group-hover:text-[#1A56DB] transition-colors">${String(idx + 1).padStart(2, '0')}</span>
+        <span class="text-sm font-medium text-slate-600 group-hover:text-slate-900 transition-colors">${title}</span>
+      `;
+      item.onclick = () => {
+        goToSlide(idx);
+        closeSidebar();
+      };
+      sidebarMenu.appendChild(item);
+    });
+
+    function updateSidebarActive() {
+      const items = sidebarMenu.querySelectorAll('button');
+      items.forEach((item, idx) => {
+        const numSpan = item.querySelector('span:first-child');
+        const textSpan = item.querySelector('span:last-child');
+        if (idx === currentSlide) {
+          item.classList.add('bg-blue-50/50', 'border-blue-100', 'shadow-inner');
+          numSpan.className = 'text-xs font-mono text-[#1A56DB] font-bold';
+          textSpan.className = 'text-sm font-bold text-[#1A56DB]';
+        } else {
+          item.classList.remove('bg-blue-50/50', 'border-blue-100', 'shadow-inner');
+          numSpan.className = 'text-xs font-mono text-slate-400 group-hover:text-[#1A56DB] transition-colors';
+          textSpan.className = 'text-sm font-medium text-slate-600 group-hover:text-slate-900 transition-colors';
+        }
+      });
+    }
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+    }
+
+    toggleSidebarBtn.onclick = openSidebar;
+    closeSidebarBtn.onclick = closeSidebar;
+
+    // Close sidebar on outer click
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !toggleSidebarBtn.contains(e.target)) {
+        closeSidebar();
+      }
+    });
+
+    // Initial render call
+    updateSlide();
+  </script>
+</body>
+
+</html>

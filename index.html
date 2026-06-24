@@ -140,7 +140,7 @@
   <!-- MAIN SLIDES CONTAINER -->
   <main class="flex-grow flex items-center justify-center px-4 md:px-12 py-6 relative overflow-hidden">
 
-    <!-- SLIDE 1: COVER -->
+        <!-- SLIDE 1: COVER -->
     <div
       class="slide-item slide-transition w-full max-w-6xl mx-auto flex flex-col justify-start lg:justify-center h-full max-h-full overflow-y-auto lg:overflow-visible py-4 lg:py-0"
       data-index="0">
@@ -384,10 +384,15 @@
         <!-- Revenue Bar Chart -->
         <div
           class="lg:col-span-6 bg-white border border-slate-200 p-6 rounded-2xl flex flex-col justify-between shadow-sm">
-          <div class="flex justify-between items-center mb-4">
+          <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
             <span class="text-sm font-semibold text-slate-700">연간 매출 추이 (연결 재무 기준)</span>
-            <span class="text-xs text-[#1A56DB] bg-blue-50 px-2 py-1 rounded border border-blue-100">최근 3년 연평균 성장률
-              31.4%</span>
+            <div class="flex items-center space-x-2 flex-wrap">
+              <span class="text-[10px] text-[#1A56DB] bg-blue-50 px-2 py-0.5 rounded border border-blue-100 font-medium">최근 3년 연평균 성장률 31.4%</span>
+              <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100 font-medium flex items-center space-x-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>매출총이익 10.16억 (12%)</span>
+              </span>
+            </div>
           </div>
           <!-- SVG Bar Chart -->
           <div class="h-48 flex items-end justify-between space-x-2 pt-6">
@@ -421,12 +426,18 @@
               <div class="w-full bg-gradient-to-t from-blue-400 to-blue-600 rounded-t h-[135px]"></div>
               <div class="text-[9px] text-slate-500 mt-1 font-mono">24년</div>
             </div>
-            <div class="flex flex-col items-center flex-1">
+            <div class="flex flex-col items-center flex-1 relative">
               <div class="text-[10px] text-[#1A56DB] font-extrabold font-mono">81.5억</div>
-              <div
-                class="w-full bg-gradient-to-t from-[#1A56DB] to-[#4F46E5] rounded-t h-[180px] shadow-[0_0_15px_rgba(26,86,219,0.2)]">
+              <div class="relative w-full bg-gradient-to-t from-[#1A56DB] to-[#4F46E5] rounded-t h-[180px] shadow-[0_0_15px_rgba(26,86,219,0.2)] overflow-hidden">
+                <!-- Overlapped Gross Profit bar (10.16억, 12%) -->
+                <div class="absolute bottom-0 left-0 right-0 bg-[#10B981] h-[12.46%]" title="매출총이익: 10.16억 (12%)"></div>
               </div>
               <div class="text-[10px] text-[#1A56DB] font-extrabold mt-1 font-mono">25년</div>
+              <!-- Indicator Badge -->
+              <div class="absolute bottom-[26px] right-full mr-2 bg-emerald-600 text-white text-[9px] font-bold px-2 py-1 rounded whitespace-nowrap shadow-md z-10 hidden md:flex items-center">
+                <div class="absolute left-full top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-l-4 border-l-emerald-600"></div>
+                매출총이익 10.16억 (12%)
+              </div>
             </div>
           </div>
         </div>
@@ -454,11 +465,11 @@
 
           <!-- Revenue Division -->
           <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
-            <h3 class="text-sm font-semibold text-slate-700 mb-3">사업 포트폴리오별 매출 비중</h3>
+            <h3 class="text-sm font-semibold text-slate-700 mb-3">사업 포트폴리오별 매출 비중 (25년 기준)</h3>
             <div class="space-y-3">
               <div>
                 <div class="flex justify-between text-xs text-slate-500 mb-1">
-                  <span>위탁급식 사업본부</span>
+                  <span>위탁급식(매출:48.89억 / 매출총이익:4.79억)</span>
                   <span class="font-bold text-[#1A56DB]">60%</span>
                 </div>
                 <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
@@ -467,7 +478,7 @@
               </div>
               <div>
                 <div class="flex justify-between text-xs text-slate-500 mb-1">
-                  <span>식자재 전처리 유통본부</span>
+                  <span>식자재 유통(매출:22억 / 매출총이익:5.06억)</span>
                   <span class="font-bold text-[#4F46E5]">27%</span>
                 </div>
                 <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
@@ -476,7 +487,7 @@
               </div>
               <div>
                 <div class="flex justify-between text-xs text-slate-500 mb-1">
-                  <span>현장 인력 도급본부</span>
+                  <span>현장인력도급(매출10.59억 / 매출총이익:0.31억)</span>
                   <span class="font-bold text-slate-500">13%</span>
                 </div>
                 <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
@@ -495,7 +506,7 @@
       data-index="4">
       <div class="space-y-4 mb-6">
         <span class="text-[#1A56DB] font-bold text-xs uppercase tracking-widest">04. Unit Economics</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">지점 단위 경제성 시뮬레이션 (1개 지점 기준)</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">지점 단위 경제성 비교표 (1개 지점 기준)</h2>
         <p class="text-slate-600 text-sm">전처리 중앙 키친 시스템 도입 시, 지점 운영 마진은 대폭 상승</p>
       </div>
 
@@ -505,7 +516,7 @@
           class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
           <div>
             <div class="flex justify-between items-center mb-4">
-              <span class="text-slate-500 text-xs font-bold uppercase tracking-wider">Traditional Model</span>
+              <span class="text-slate-500 text-xs font-bold uppercase tracking-wider">2026년 4월 실제 지점 운영현황</span>
               <span class="text-xs px-2.5 py-1 rounded bg-red-50 text-red-600 border border-red-100">현행 구조
                 (AS-IS)</span>
             </div>
@@ -535,11 +546,11 @@
 
           <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center">
             <div>
-              <span class="text-xs text-slate-500 block">지점 최종 순이익</span>
+              <span class="text-xs text-slate-500 block">지점 순이익</span>
               <span class="text-xl font-bold text-slate-700">3,261,119 원</span>
             </div>
             <div class="text-right">
-              <span class="text-xs text-slate-500 block">최종 영업이익률</span>
+              <span class="text-xs text-slate-500 block">영업이익률</span>
               <span class="text-2xl font-black text-slate-600">9.3%</span>
             </div>
           </div>
@@ -555,9 +566,8 @@
             </svg>
           </div>
           <div class="text-center mt-3">
-            <span class="text-xs text-[#1A56DB] font-bold block">영업이익</span>
+            <span class="text-xs text-[#1A56DB] font-bold block">영업이익률</span>
             <span class="text-xl font-black text-[#1A56DB]">156% ▲</span>
-            <span class="text-[10px] text-slate-500 block">상승 효과</span>
           </div>
         </div>
 
@@ -566,7 +576,7 @@
           class="lg:col-span-5 bg-gradient-to-b from-blue-50/30 to-white border-2 border-[#1A56DB] rounded-2xl p-6 flex flex-col justify-between shadow-[0_4px_20px_rgba(26,86,219,0.08)]">
           <div>
             <div class="flex justify-between items-center mb-4">
-              <span class="text-[#1A56DB] text-xs font-bold uppercase tracking-wider">CK DX Model</span>
+              <span class="text-[#1A56DB] text-xs font-bold uppercase tracking-wider">중앙키친 모델 시뮬레이션</span>
               <span class="text-xs px-2.5 py-1 rounded bg-blue-100 text-[#1A56DB] font-bold">솔루션 적용 (TO-BE)</span>
             </div>
             <div class="space-y-3.5 text-sm">
@@ -595,12 +605,12 @@
 
           <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center">
             <div>
-              <span class="text-xs text-[#1A56DB] block font-semibold">지점 최종 순이익</span>
-              <span class="text-xl font-bold text-slate-900">8,370,475 원</span>
+              <span class="text-xs text-[#1A56DB] block font-semibold">지점 순이익</span>
+              <span class="text-xl font-bold text-slate-900">8,734,016 원</span>
             </div>
             <div class="text-right">
-              <span class="text-xs text-[#1A56DB] block font-semibold">최종 영업이익률</span>
-              <span class="text-2xl font-black text-[#1A56DB]">24.0%</span>
+              <span class="text-xs text-[#1A56DB] block font-semibold">영업이익률</span>
+              <span class="text-2xl font-black text-[#1A56DB]">23.4%</span>
             </div>
           </div>
         </div>
@@ -613,8 +623,8 @@
       data-index="5">
       <div class="space-y-4 mb-8">
         <span class="text-[#1A56DB] font-bold text-xs uppercase tracking-widest">05. Growth Formula</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Rule of 56 적용: 고성장 고수익 비즈니스 증명</h2>
-        <p class="text-slate-600 text-sm">연평균 성장성(31.4%)과 체질 개선 타깃 이익률(25%)을 더해 글로벌 고성장 수준을 돌파</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">고성장 고수익 비즈니스 달성 가능성</h2>
+        <p class="text-slate-600 text-sm">연평균 성장성(31.4%)과 체질 개선 시 매출총이익률(25%)을 더해 글로벌 고성장 수준을 돌파</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -648,7 +658,7 @@
             <!-- Our Performance -->
             <div class="space-y-1">
               <div class="flex justify-between text-xs text-[#1A56DB] font-bold">
-                <span>당사 To-be 연계 지표 (연평균 성장률 31.4% + 영업이익률 25%)</span>
+                <span>당사 To-be 연계 지표 (연평균 성장률 31.4% + 매출총이익률 25%)</span>
                 <span>Rule of 56.4</span>
               </div>
               <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
@@ -664,10 +674,10 @@
 
         <!-- Scalability Expansion Cards -->
         <div class="lg:col-span-6 space-y-4">
-          <h3 class="text-lg font-bold text-slate-800">중앙식 인프라 기반 향후 사업 확장성</h3>
+          <h3 class="text-lg font-bold text-slate-800">중앙키친 달성 후 전개 가능한 사업모델</h3>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-slate-50 border border-slate-200/80 p-5 rounded-xl space-y-2 shadow-sm">
+            <div class="bg-slate-50 border border-slate-200/80 p-5 rounded-xl space-y-2 s hadow-sm">
               <h4 class="font-bold text-[#1A56DB] text-sm">01. 전처리 B2B 계약 판매</h4>
               <p class="text-xs text-slate-600 leading-relaxed">
                 타사 위탁급식 브랜드 대상 레시피·식단표 라이선스 공급 계약 및 규격화된 전처리 식자재 유통 공급
@@ -702,51 +712,133 @@
       data-index="6">
       <div class="space-y-4 mb-6">
         <span class="text-[#1A56DB] font-bold text-xs uppercase tracking-widest">06. Financial Forecast</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">5개년 재무 및 기업 가치 예측치 </h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">5개년 재무 및 기업 가치 예측치(위탁급식) </h2>
         <p class="text-slate-600 text-sm">2년 차부터 체질 개선 마진율 25% 구간에 즉각 진입하여 견고한 현금 흐름과 유의미한 가치를 달성</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-        <!-- Table -->
-        <div class="lg:col-span-8 bg-white border border-slate-200 rounded-2xl p-6 overflow-x-auto shadow-sm">
-          <table class="w-full text-left text-sm whitespace-nowrap">
-            <thead>
-              <tr class="border-b border-slate-200 text-slate-600 text-xs">
-                <th class="pb-3">구분</th>
-                <th class="pb-3">1년 차 (현재)</th>
-                <th class="pb-3 text-[#1A56DB]">2년 차 (2026년)</th>
-                <th class="pb-3">3년 차 (2027년)</th>
-                <th class="pb-3">4년 차 (2028년)</th>
-                <th class="pb-3 text-[#1A56DB]">5년 차 (2029년)</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200 text-slate-700">
-              <tr>
-                <td class="py-4 font-semibold text-slate-800">연간 매출액</td>
-                <td class="py-4">48.89억 원</td>
-                <td class="py-4 text-[#1A56DB] font-semibold">64.26억 원</td>
-                <td class="py-4">84.42억 원</td>
-                <td class="py-4">110.80억 원</td>
-                <td class="py-4 text-[#1A56DB] font-bold">145.74억 원</td>
-              </tr>
-              <tr>
-                <td class="py-4 font-semibold text-slate-800">영업이익</td>
-                <td class="py-4">4.89억 원</td>
-                <td class="py-4 text-[#1A56DB] font-semibold">16.07억 원</td>
-                <td class="py-4">21.11억 원</td>
-                <td class="py-4">27.72억 원</td>
-                <td class="py-4 text-emerald-600 font-bold">36.44억 원</td>
-              </tr>
-              <tr>
-                <td class="py-4 font-semibold text-slate-800">영업이익률</td>
-                <td class="py-4">10.0%</td>
-                <td class="py-4 text-[#1A56DB] font-semibold">25.0% (체질개선)</td>
-                <td class="py-4">25.0%</td>
-                <td class="py-4">25.0%</td>
-                <td class="py-4 text-emerald-600 font-bold">25.0%</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Table & Chart Container -->
+        <div class="lg:col-span-8 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-6">
+          <!-- Table Wrapper -->
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-center text-sm whitespace-nowrap">
+              <thead>
+                <tr class="border-b border-slate-200 text-slate-600 text-xs">
+                  <th class="pb-3">구분</th>
+                  <th class="pb-3">26년 (현재)</th>
+                  <th class="pb-3 text-[#1A56DB]">2027년</th>
+                  <th class="pb-3">2028년</th>
+                  <th class="pb-3">2029년</th>
+                  <th class="pb-3 text-[#1A56DB]">2030년</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 text-slate-700">
+                <tr>
+                  <td class="py-4 font-semibold text-slate-800">연간 매출액</td>
+                  <td class="py-4">48.89억 원</td>
+                  <td class="py-4 text-[#1A56DB] font-semibold">64.26억 원</td>
+                  <td class="py-4">84.42억 원</td>
+                  <td class="py-4">110.80억 원</td>
+                  <td class="py-4 text-[#1A56DB] font-bold">145.74억 원</td>
+                </tr>
+                <tr>
+                  <td class="py-4 font-semibold text-slate-800">매출총이익</td>
+                  <td class="py-4">4.89억 원</td>
+                  <td class="py-4 text-[#1A56DB] font-semibold">16.07억 원</td>
+                  <td class="py-4">21.11억 원</td>
+                  <td class="py-4">27.72억 원</td>
+                  <td class="py-4 text-emerald-600 font-bold">36.44억 원</td>
+                </tr>
+                <tr>
+                  <td class="py-4 font-semibold text-slate-800">매출총이익률</td>
+                  <td class="py-4">약 10.0%</td>
+                  <td class="py-4 text-[#1A56DB] font-semibold">25.0% (체질개선)</td>
+                  <td class="py-4">25.0%</td>
+                  <td class="py-4">25.0%</td>
+                  <td class="py-4 text-emerald-600 font-bold">25.0%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Graph Section -->
+          <div class="border-t border-slate-100 pt-4 overflow-x-auto w-full">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <span class="text-xs font-bold text-slate-700">5개년 재무 추이</span>
+              <div class="flex items-center space-x-3 text-[10px] font-medium">
+                <span class="flex items-center space-x-1">
+                  <span class="w-2.5 h-2.5 bg-gradient-to-t from-[#1A56DB] to-[#4F46E5] rounded-sm"></span>
+                  <span class="text-slate-600">매출액</span>
+                </span>
+                <span class="flex items-center space-x-1">
+                  <span class="w-2.5 h-2.5 bg-[#10B981] rounded-sm"></span>
+                  <span class="text-slate-600">매출총이익</span>
+                </span>
+              </div>
+            </div>
+            
+            <div class="h-[180px] flex items-end justify-between space-x-3 px-2 pt-2 min-w-[450px]">
+              <!-- 26년 (현재) -->
+              <div class="flex flex-col items-center flex-1">
+                <div class="text-[9px] font-mono text-center mb-1 leading-tight">
+                  <div class="text-[#1A56DB] font-bold">48.89억</div>
+                  <div class="text-emerald-600 font-semibold text-[8px]">4.89억 (10%)</div>
+                </div>
+                <div class="relative w-full max-w-[48px] bg-gradient-to-t from-[#1A56DB] to-[#4F46E5] rounded-t h-[40px] shadow-sm overflow-hidden group">
+                  <div class="absolute bottom-0 left-0 right-0 bg-[#10B981] h-[10%]" title="26년 매출총이익: 4.89억 (10%)"></div>
+                </div>
+                <div class="text-[10px] text-slate-500 mt-1 font-mono">26년 (현재)</div>
+              </div>
+              
+              <!-- 2027년 -->
+              <div class="flex flex-col items-center flex-1">
+                <div class="text-[9px] font-mono text-center mb-1 leading-tight">
+                  <div class="text-[#1A56DB] font-bold">64.26억</div>
+                  <div class="text-emerald-600 font-semibold text-[8px]">16.07억 (25%)</div>
+                </div>
+                <div class="relative w-full max-w-[48px] bg-gradient-to-t from-[#1A56DB] to-[#4F46E5] rounded-t h-[53px] shadow-sm overflow-hidden group">
+                  <div class="absolute bottom-0 left-0 right-0 bg-[#10B981] h-[25%]" title="2027년 매출총이익: 16.07억 (25%)"></div>
+                </div>
+                <div class="text-[10px] text-[#1A56DB] font-semibold mt-1 font-mono">2027년</div>
+              </div>
+              
+              <!-- 2028년 -->
+              <div class="flex flex-col items-center flex-1">
+                <div class="text-[9px] font-mono text-center mb-1 leading-tight">
+                  <div class="text-[#1A56DB] font-bold">84.42억</div>
+                  <div class="text-emerald-600 font-semibold text-[8px]">21.11억 (25%)</div>
+                </div>
+                <div class="relative w-full max-w-[48px] bg-gradient-to-t from-[#1A56DB] to-[#4F46E5] rounded-t h-[70px] shadow-sm overflow-hidden group">
+                  <div class="absolute bottom-0 left-0 right-0 bg-[#10B981] h-[25%]" title="2028년 매출총이익: 21.11억 (25%)"></div>
+                </div>
+                <div class="text-[10px] text-slate-500 mt-1 font-mono">2028년</div>
+              </div>
+              
+              <!-- 2029년 -->
+              <div class="flex flex-col items-center flex-1">
+                <div class="text-[9px] font-mono text-center mb-1 leading-tight">
+                  <div class="text-[#1A56DB] font-bold">110.80억</div>
+                  <div class="text-emerald-600 font-semibold text-[8px]">27.72억 (25%)</div>
+                </div>
+                <div class="relative w-full max-w-[48px] bg-gradient-to-t from-[#1A56DB] to-[#4F46E5] rounded-t h-[91px] shadow-sm overflow-hidden group">
+                  <div class="absolute bottom-0 left-0 right-0 bg-[#10B981] h-[25%]" title="2029년 매출총이익: 27.72억 (25%)"></div>
+                </div>
+                <div class="text-[10px] text-slate-500 mt-1 font-mono">2029년</div>
+              </div>
+              
+              <!-- 2030년 -->
+              <div class="flex flex-col items-center flex-1">
+                <div class="text-[9px] font-mono text-center mb-1 leading-tight">
+                  <div class="text-[#1A56DB] font-extrabold">145.74억</div>
+                  <div class="text-emerald-600 font-bold text-[8px]">36.44억 (25%)</div>
+                </div>
+                <div class="relative w-full max-w-[48px] bg-gradient-to-t from-[#1A56DB] to-[#4F46E5] rounded-t h-[120px] shadow-[0_0_12px_rgba(26,86,219,0.15)] overflow-hidden group">
+                  <div class="absolute bottom-0 left-0 right-0 bg-[#10B981] h-[25%]" title="2030년 매출총이익: 36.44억 (25%)"></div>
+                </div>
+                <div class="text-[10px] text-[#1A56DB] font-extrabold mt-1 font-mono">2030년</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Valuation Target Box -->
@@ -757,12 +849,12 @@
               시점)</span>
 
             <div class="space-y-2">
-              <span class="text-xs text-slate-500">5개년 후 기대 영업이익</span>
+              <span class="text-xs text-slate-500">5년 후 기대 매출총이익</span>
               <div class="text-3xl font-extrabold text-slate-900">36.44억 원</div>
             </div>
 
             <div class="space-y-2">
-              <span class="text-xs text-slate-500">전처리 식품 및 물류 테크 멀티플 (PER)</span>
+              <span class="text-xs text-slate-500">푸드,물류테크 기업 평균 멀티플 (PER)</span>
               <div class="text-3xl font-extrabold text-[#1A56DB]">15 배</div>
             </div>
           </div>
@@ -965,9 +1057,9 @@
     const slideTitles = [
       "전처리 센트럴 키친",
       "위탁급식 산업의 고질적 4대 병목",
-      "전처리 센트럴 키친(CK) 도입 솔루션",
-      "압도적인 성장세 및 포트폴리오",
-      "지점 경제성(Unit Economics) 변화 시뮬레이션",
+      "전처리 중앙 키친(CK) 도입 솔루션",
+      "연평균 매출 성장 곡선 및 사업 비중",
+      "지점 단위 경제성 비교표",
       "Rule of 56 적용: 고성장 고수익 증명",
       "5개년 재무 예측 및 기업가치",
       "투자 목표 및 재원 활용 계획",

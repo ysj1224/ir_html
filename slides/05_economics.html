@@ -1,0 +1,116 @@
+<!-- SLIDE 5: UNIT ECONOMICS (SIMULATION) -->
+    <div
+      class="slide-item slide-transition w-full max-w-6xl mx-auto hidden flex-col justify-start lg:justify-center h-full max-h-full overflow-y-auto lg:overflow-visible py-4 lg:py-0"
+      data-index="4">
+      <div class="space-y-4 mb-6">
+        <span class="text-[#1A56DB] font-bold text-xs uppercase tracking-widest">04. Unit Economics</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">지점 단위 경제성 비교표 (1개 지점 기준)</h2>
+        <p class="text-slate-600 text-sm">전처리 중앙 키친 시스템 도입 시, 지점 운영 마진은 대폭 상승</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <!-- Column 1: Current State -->
+        <div
+          class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-slate-500 text-xs font-bold uppercase tracking-wider">2026년 4월 실제 지점 운영현황</span>
+              <span class="text-xs px-2.5 py-1 rounded bg-red-50 text-red-600 border border-red-100">현행 구조
+                (AS-IS)</span>
+            </div>
+            <div class="space-y-3.5 text-sm">
+              <div class="flex justify-between border-b border-slate-100 pb-2">
+                <span class="text-slate-500">지점 총매출액 (식수 4,835식)</span>
+                <span class="font-semibold text-slate-800">34,715,300 원</span>
+              </div>
+              <div class="flex justify-between border-b border-slate-100 pb-2">
+                <span class="text-slate-500">원재료비 (현지 보관 로스 포함)</span>
+                <span class="font-semibold text-red-600">18,193,571 원</span>
+              </div>
+              <div class="flex justify-between border-b border-slate-100 pb-2">
+                <span class="text-slate-500">식재료 유통 마진 (20%)</span>
+                <span class="font-semibold text-emerald-600">+3,638,714 원</span>
+              </div>
+              <div class="flex justify-between border-b border-slate-100 pb-2">
+                <span class="text-slate-500">현장 인건비 (5인 고용 기준)</span>
+                <span class="font-semibold text-red-600">16,535,784 원</span>
+              </div>
+              <div class="flex justify-between pb-1">
+                <span class="text-slate-500">기타 고정 관리비</span>
+                <span class="font-semibold text-slate-800">363,540 원</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center">
+            <div>
+              <span class="text-xs text-slate-500 block">지점 순이익</span>
+              <span class="text-xl font-bold text-slate-700">3,261,119 원</span>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-slate-500 block">영업이익률</span>
+              <span class="text-2xl font-black text-slate-600">9.3%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Impact Arrow -->
+        <div class="lg:col-span-2 flex flex-col justify-center items-center py-4 lg:py-0">
+          <div
+            class="bg-blue-50 p-4 rounded-full border border-blue-100 flex items-center justify-center animate-pulse">
+            <svg class="w-8 h-8 text-[#1A56DB] transform rotate-90 lg:rotate-0" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </div>
+          <div class="text-center mt-3">
+            <span class="text-xs text-[#1A56DB] font-bold block">영업이익률</span>
+            <span class="text-xl font-black text-[#1A56DB]">156% ▲</span>
+          </div>
+        </div>
+
+        <!-- Column 3: TO-BE CK Model -->
+        <div
+          class="lg:col-span-5 bg-gradient-to-b from-blue-50/30 to-white border-2 border-[#1A56DB] rounded-2xl p-6 flex flex-col justify-between shadow-[0_4px_20px_rgba(26,86,219,0.08)]">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-[#1A56DB] text-xs font-bold uppercase tracking-wider">중앙키친 모델 시뮬레이션</span>
+              <span class="text-xs px-2.5 py-1 rounded bg-blue-100 text-[#1A56DB] font-bold">솔루션 적용 (TO-BE)</span>
+            </div>
+            <div class="space-y-3.5 text-sm">
+              <div class="flex justify-between border-b border-slate-100 pb-2">
+                <span class="text-slate-600">지점 총매출액 (동일 식수 기준)</span>
+                <span class="font-semibold text-slate-800">34,715,300 원</span>
+              </div>
+              <div class="flex justify-between border-b border-slate-100 pb-2">
+                <span class="text-slate-600">원재료비 (과발주 및 대량구매 28% 절감)</span>
+                <span class="font-semibold text-[#1A56DB]">13,099,371 원</span>
+              </div>
+              <div class="flex justify-between border-b border-slate-100 pb-2">
+                <span class="text-slate-600">식재료 유통 마진 (20%)</span>
+                <span class="font-semibold text-emerald-600">+2,619,874 원</span>
+              </div>
+              <div class="flex justify-between border-b border-slate-100 pb-2">
+                <span class="text-slate-600">현장 인건비 (5인 ➔ 3인으로 축소)</span>
+                <span class="font-semibold text-[#1A56DB]">9,921,470 원</span>
+              </div>
+              <div class="flex justify-between pb-1">
+                <span class="text-slate-600">센트럴 키친 운영비 분담 (지점 이익의 40%)</span>
+                <span class="font-semibold text-slate-700">5,580,317 원</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center">
+            <div>
+              <span class="text-xs text-[#1A56DB] block font-semibold">지점 순이익</span>
+              <span class="text-xl font-bold text-slate-900">8,734,016 원</span>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-[#1A56DB] block font-semibold">영업이익률</span>
+              <span class="text-2xl font-black text-[#1A56DB]">23.4%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
