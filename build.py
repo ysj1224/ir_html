@@ -4,6 +4,8 @@ import time
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 template_path = os.path.join(base_dir, 'template.html')
+header_path = os.path.join(base_dir, 'header.html')
+footer_path = os.path.join(base_dir, 'footer.html')
 index_path = os.path.join(base_dir, 'index.html')
 slides_dir = os.path.join(base_dir, 'slides')
 
@@ -13,13 +15,31 @@ def build():
             print("Error: template.html not found! Run split.js first to initialize.")
             return False
 
+        if not os.path.exists(header_path):
+            print("Error: header.html not found!")
+            return False
+
+        if not os.path.exists(footer_path):
+            print("Error: footer.html not found!")
+            return False
+
         if not os.path.exists(slides_dir):
             print("Error: slides directory not found!")
             return False
 
-        # Read template
+        # Read template, header & footer
         with open(template_path, 'r', encoding='utf-8') as f:
             template = f.read()
+
+        with open(header_path, 'r', encoding='utf-8') as f:
+            header_content = f.read().strip()
+
+        with open(footer_path, 'r', encoding='utf-8') as f:
+            footer_content = f.read().strip()
+
+        # Replace header & footer placeholders
+        merged_content = template.replace('<!-- HEADER_PLACEHOLDER -->', header_content)
+        merged_content = merged_content.replace('<!-- FOOTER_PLACEHOLDER -->', footer_content)
 
         # Read and sort slides
         slide_files = sorted([f for f in os.listdir(slides_dir) if f.endswith('.html')])
@@ -32,13 +52,13 @@ def build():
 
         slides_content = '\n\n    '.join(slides_contents)
 
-        # Replace placeholder
+        # Replace slides placeholder
         placeholder = '<!-- SLIDES_PLACEHOLDER -->'
-        if placeholder not in template:
+        if placeholder not in merged_content:
             print("Error: template.html does not contain <!-- SLIDES_PLACEHOLDER -->")
             return False
 
-        merged_content = template.replace(placeholder, slides_content)
+        merged_content = merged_content.replace(placeholder, slides_content)
 
         # Write to index.html
         with open(index_path, 'w', encoding='utf-8') as f:
@@ -56,6 +76,10 @@ def get_mtimes():
     mtimes = {}
     if os.path.exists(template_path):
         mtimes[template_path] = os.path.getmtime(template_path)
+    if os.path.exists(header_path):
+        mtimes[header_path] = os.path.getmtime(header_path)
+    if os.path.exists(footer_path):
+        mtimes[footer_path] = os.path.getmtime(footer_path)
     if os.path.exists(slides_dir):
         for file_name in os.listdir(slides_dir):
             if file_name.endswith('.html'):
@@ -70,7 +94,7 @@ def main():
     # Check watch argument
     args = sys.argv[1:]
     if '--watch' in args or 'watch' in args or '-w' in args:
-        print("👀 Watching for changes in template.html and slides/... (Press Ctrl+C to stop)")
+        print("👀 Watching for changes in template.html, header.html, footer.html and slides/... (Press Ctrl+C to stop)")
         
         last_mtimes = get_mtimes()
         try:
