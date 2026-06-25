@@ -63,12 +63,17 @@
       z-index: 0;
       padding-left: 1rem;
       padding-right: 1rem;
+      padding-top: 0.5rem !important;
+      padding-bottom: 1rem !important;
+      box-sizing: border-box;
     }
 
     @media (min-width: 768px) {
       .slide-item {
         padding-left: 3rem;
         padding-right: 3rem;
+        padding-top: 1.5rem !important;
+        padding-bottom: 2rem !important;
       }
     }
 
@@ -329,8 +334,8 @@
       }
     }
 
-    // Check if element or its parents can scroll
-    function canScroll(element, deltaY) {
+    // Check if slide transition should be blocked due to scrollable content
+    function shouldBlockSlideTransition(element, deltaY) {
       let current = element;
       const mainContainer = document.querySelector('main');
       
@@ -339,9 +344,21 @@
         const overflowY = style.overflowY;
         const isScrollable = overflowY === 'auto' || overflowY === 'scroll';
         
-        // If element has active scrollable space, we always block slide wheel navigation
+        // If element is scrollable and has active scrollable space
         if (isScrollable && current.scrollHeight > current.clientHeight + 3) {
-          return true;
+          if (deltaY > 0) {
+            // Scrolling down: block transition if there's still space to scroll down
+            const hasMoreScrollDown = current.scrollTop + current.clientHeight < current.scrollHeight - 5;
+            if (hasMoreScrollDown) {
+              return true;
+            }
+          } else if (deltaY < 0) {
+            // Scrolling up: block transition if there's still space to scroll up
+            const hasMoreScrollUp = current.scrollTop > 5;
+            if (hasMoreScrollUp) {
+              return true;
+            }
+          }
         }
         current = current.parentElement;
       }
@@ -357,7 +374,7 @@
       if (sidebar && !sidebar.classList.contains('-translate-x-full')) return;
 
       // 마우스가 스크롤 가능한 요소 위에 있고, 그 방향으로 스크롤 여유가 있다면 슬라이드 전환 무시
-      if (canScroll(e.target, e.deltaY)) return;
+      if (shouldBlockSlideTransition(e.target, e.deltaY)) return;
 
       // 모바일/태블릿 화면 크기(1024px 미만)에서는 휠/스크롤로 슬라이드가 넘어가는 것을 방지 (내부 스크롤 지원을 위해)
       if (window.innerWidth < 1024) return;
